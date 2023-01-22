@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Burger</title>
+  </head>
+  <body>
+    <div id="fcontainer" style="width: 500px; margin: 0 auto;">
+      <h1 id="fname" style="text-align: center; font-size: 36px; margin-bottom: 20px;"></h1>
+      <img id="fimage" src="" alt="Food" style="display: block; width: 100%; margin-bottom: 20px;">
+      <p id="fdescription" style="text-align: justify;"></p>
+      <p id="fprice" style="text-align: justify;"></p>
+    </div>
+
+    <script>
+      fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+          const meal = data.meals[0]
+          document.querySelector('#fname').innerHTML = meal.strMeal;
+          document.querySelector('#fimage').src = meal.strMealThumb;
+          document.querySelector('#fdescription').innerHTML = meal.strInstructions;
+          document.querySelector('#fprice').innerHTML = "Price : " + meal.strPrice;
+        });
+    </script>
+  </body>
+</html>
